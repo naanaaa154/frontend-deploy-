@@ -1,6 +1,6 @@
 import type { AuthCredentials, User } from '../types';
 
-const API_URL = 'http://localhost:8000/api'; // Sesuaikan dengan config backend
+const API_URL = (import.meta.env.VITE_API_URL ?? 'http://localhost:8000') + '/api'; // use VITE_API_URL from .env
 
 export const authApi = {
   login: async (credentials: AuthCredentials): Promise<{ access_token: string; token_type: string }> => {

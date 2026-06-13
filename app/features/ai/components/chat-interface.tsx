@@ -4,7 +4,7 @@ import { Button } from '~/components/ui/button';
 import { Send, Loader2, Filter, Search, X } from 'lucide-react';
 import { authJson } from '~/lib/api-client';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 type TranscriptOption = {
     id: string;

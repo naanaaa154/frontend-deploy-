@@ -1,7 +1,7 @@
 import type { ChatRequest, ChatResponse, ChatSession, ChatMessage } from '../types';
 import { authJson } from '~/lib/api-client';
 
-const API_URL = 'http://localhost:8000/api/chat';
+const API_URL = (import.meta.env.VITE_API_URL) + '/api/chat';
 
 export const chatApi = {
   // Send a chat message

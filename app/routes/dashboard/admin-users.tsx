@@ -17,7 +17,7 @@ type AdminUser = {
 type SortField = "username" | "email" | "role" | "status" | "created_at";
 type SortOrder = "asc" | "desc";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 const ITEMS_PER_PAGE = 10;
 
 export default function AdminUsersPage() {

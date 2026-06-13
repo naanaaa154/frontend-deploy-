@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Button } from "~/components/ui/button";
 import { FileUp, Info, Loader2, Plus, X } from "lucide-react";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export default function TranscriptUploadPage() {
     const [agenda, setAgenda] = useState("");
