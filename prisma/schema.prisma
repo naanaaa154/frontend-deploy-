@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  notes     Note[]
+  voiceRecordings VoiceRecording[]
+  
+  @@map("users")
+}
+
+model Note {
+  id          String   @id @default(cuid())
+  agenda      String
+  transcripts     String?
+  summary     String?
+  tags        String[]
+  isPublic    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  voiceRecordings VoiceRecording[]
+  
+  @@map("notes")
+}
+
+model VoiceRecording {
+  id          String   @id @default(cuid())
+  filename    String
+  originalName String
+  duration    Int?     // in seconds
+  transcription String?
+  aiSummary   String?
+  fileUrl     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  noteId      String?
+  note        Note?    @relation(fields: [noteId], references: [id], onDelete: SetNull)
+  
+  @@map("voice_recordings")
+}
